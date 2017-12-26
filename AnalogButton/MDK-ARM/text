@@ -1,0 +1,34 @@
+	/*										»Ќ»÷»јЋ»«ј÷»я “ј…ћ≈–ј																								*/
+	RCC->APB1ENR |= RCC_APB1ENR_TIM4EN;						/* тактирование таймера 4										*/
+	
+	TIM4->PSC		|= 0xFA0;
+	TIM4->ARR		|= 0xFFA;
+	TIM4->CCR1	|= 0x64;
+	
+	TIM4->DIER |= TIM_DIER_CC1IE;									/* разрешаем прерывание по сравнению				*/
+	NVIC_EnableIRQ(TIM4_IRQn);										/* разрешение прерываний 										*/
+	
+	
+	
+	
+	
+	
+	/*										»Ќ»÷»јЋ»«ј÷»я ADC																										*/
+	
+	RCC->APB2ENR |= RCC_APB2ENR_IOPAEN;						/* разрешение тактирвоани€ порта A					*/
+	GPIOA->CRL &= ~0xFU << 0;											/* настройка вывода под ана-вход						*/
+	
+
+	RCC->CFGR	&= ~RCC_CFGR_ADCPRE_Msk;						/* очистка флагов прескалера adc						*/
+	RCC->CFGR |= RCC_CFGR_ADCPRE_DIV6; 						/* выбор делител€ прескалера adc						*/
+	RCC->APB2ENR |= RCC_APB2ENR_ADC1EN;						/* разрешает тактирвоание ADC								*/
+
+	//ADC1->CR2 |= ADC_CR2_CAL;											/* производим калибровку ацп								*/
+	//while (!(ADC1->CR2 & ADC_CR2_CAL));						/* ждем окончани€ калибровки								*/
+	ADC1->SMPR2 |= ADC_SMPR2_SMP0_1;								/* дл€ первого канала между выборками 7.5ц	*/
+	ADC1->CR1 |= ADC_CR1_EOCIE;										/* разрешаем прерывание по оконч преобраз.	*/
+	ADC1->CR2 |= ADC_CR2_ADON;
+	
+	NVIC_EnableIRQ(ADC1_2_IRQn);									/* разрешаем прерывание ADC									*/
+	
+	TIM4->CR1		|= TIM_CR1_CEN;

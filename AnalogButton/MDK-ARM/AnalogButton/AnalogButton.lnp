@@ -1,0 +1,26 @@
+--cpu Cortex-M3
+"analogbutton\main.o"
+"analogbutton\stm32f1xx_hal_msp.o"
+"analogbutton\stm32f1xx_it.o"
+"analogbutton\n5110.o"
+"analogbutton\analogbuttons.o"
+"analogbutton\stm32f1xx_hal_tim_ex.o"
+"analogbutton\stm32f1xx_hal.o"
+"analogbutton\stm32f1xx_hal_adc.o"
+"analogbutton\stm32f1xx_hal_tim.o"
+"analogbutton\stm32f1xx_hal_cortex.o"
+"analogbutton\stm32f1xx_hal_pwr.o"
+"analogbutton\stm32f1xx_hal_rcc.o"
+"analogbutton\stm32f1xx_hal_flash.o"
+"analogbutton\stm32f1xx_hal_adc_ex.o"
+"analogbutton\stm32f1xx_hal_gpio_ex.o"
+"analogbutton\stm32f1xx_hal_flash_ex.o"
+"analogbutton\stm32f1xx_hal_gpio.o"
+"analogbutton\stm32f1xx_hal_dma.o"
+"analogbutton\stm32f1xx_hal_rcc_ex.o"
+"analogbutton\startup_stm32f103xb.o"
+"analogbutton\system_stm32f1xx.o"
+--library_type=microlib --strict --scatter "AnalogButton\AnalogButton.sct"
+--diag_suppress=L6329 --summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "AnalogButton.map" -o AnalogButton\AnalogButton.axf
